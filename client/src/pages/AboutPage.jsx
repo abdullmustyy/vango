@@ -26,7 +26,7 @@ export default function AboutPage() {
             </h2>
             <Link
               to="/vans"
-              className="bg-[#161616] hover:bg-[#282828] text-white text-base font-bold md:w-80 w-64 py-4 text-center rounded-lg transition"
+              className="bg-[#161616] opacity-100 hover:opacity-90 text-white text-base font-bold md:w-80 w-64 py-4 text-center rounded-lg transition"
             >
               Explore our vans
             </Link>

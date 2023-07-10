@@ -1,15 +1,18 @@
-import Footer from "./components/Footer";
-import Hero from "./components/Hero";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
 import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 
-function App() {
+export default function App() {
   return (
-    <section className="overflow-x-hidden">
-      <NavBar />
-      <Hero />
-      <Footer />
-    </section>
+    <BrowserRouter>
+      <NavBar/>
+      <Routes>
+        <Route path="/" element={<HomePage />}></Route>
+        <Route path="/about" element={<AboutPage />}></Route>
+      </Routes>
+      <Footer/>
+    </BrowserRouter>
   );
 }
-
-export default App;

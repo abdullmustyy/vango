@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
-.hero {
+.home .hero {
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.46) 0%, rgba(0, 0, 0, 0.46) 100%), url("./assets/hero-bg.png") no-repeat center/cover;
+}
+
+.about .hero {
+    background: url("./assets/about-bg.png") no-repeat center/cover;
 }

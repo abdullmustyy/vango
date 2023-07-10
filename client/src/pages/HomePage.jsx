@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function HomePage() {
   return (
     <section className="home overflow-x-hidden font-inter">
@@ -10,12 +12,12 @@ export default function HomePage() {
             Add adventure to your life by joining the #vango movement. Rent the
             perfect van to make your perfect road trip.
           </p>
-          <a
-            href=""
+          <Link
+            to="/vans"
             className="bg-[#FF8C38] hover:bg-[#fc9951] text-lg font-bold md:w-96 w-80 py-4 text-center rounded-lg transition"
           >
             Find your van
-          </a>
+          </Link>
         </div>
       </main>
     </section>

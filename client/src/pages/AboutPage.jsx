@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function AboutPage() {
   return (
     <section className="about bg-[#FFF7ED] overflow-x-hidden font-inter">
@@ -22,12 +24,12 @@ export default function AboutPage() {
             <h2 className="text-2xl font-bold">
               Your destination is waiting. Your van is ready.
             </h2>
-            <a
-              href="/vans"
+            <Link
+              to="/vans"
               className="bg-[#161616] hover:bg-[#282828] text-white text-base font-bold md:w-80 w-64 py-4 text-center rounded-lg transition"
             >
               Explore our vans
-            </a>
+            </Link>
           </div>
         </aside>
       </main>

@@ -12,7 +12,7 @@ const vansSlice = createSlice({
   reducers: {
     filter(state, action) {
       if (state.filters.includes(action.payload)) {
-        state.isFiltered = false;
+        state.isFiltered = state.filters.length > 1 ? true : false;
         state.filters = state.filters.filter(
           (filter) => filter !== action.payload
         );

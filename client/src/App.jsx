@@ -17,18 +17,11 @@ export default function App() {
     async function getVans() {
       const res = await fetch("/api/vans");
       const data = await res.json();
-      setVansData(data.vans);
-    }
-    getVans();
-  }, []);
-
-  useEffect(() => {
-    setVansData((prevVansData) =>
-      prevVansData.map((data) => {
+      const processedData = data.vans.map((data) => {
         const typeBg =
-          data.type === "Simple"
+          data.type === "simple"
             ? "bg-[#E17654]"
-            : data.type === "Luxury"
+            : data.type === "luxury"
             ? "bg-[#161616]"
             : "bg-[#115E59]";
         return {
@@ -36,9 +29,11 @@ export default function App() {
           typeBg: typeBg,
           type: data.type.charAt(0).toUpperCase() + data.type.slice(1),
         };
-      })
-    );
-  }, [vansData]);
+      });
+      setVansData(processedData);
+    }
+    getVans();
+  }, []);
 
   return (
     <BrowserRouter>

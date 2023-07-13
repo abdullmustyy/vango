@@ -9,10 +9,6 @@ export default function VansShowcase() {
     ? vansData
     : vansData.filter((data) => filters.includes(data.type));
 
-  //   const styles = {
-  //     backgroundColor: "",
-  //   };
-
   return (
     <div className="grid grid-cols-2 sm:gap-12 gap-6">
       {vansProcessedData.map((data) => (
@@ -26,7 +22,9 @@ export default function VansShowcase() {
           </div>
           <div className="flex justify-between">
             <h3 className="sm:text-2xl text-lg font-semibold">{data.name}</h3>
-            <span className="sm:text-2xl text-lg font-semibold">${data.price}/day</span>
+            <span className="sm:text-2xl text-lg font-semibold">
+              ${data.price}/day
+            </span>
           </div>
           <span
             className={`${data.typeBg} text-[#FFEAD0] sm:text-base text-sm sm:font-bold font-semibold rounded-md sm:py-2 py-1 sm:px-6 px-4 w-fit`}

@@ -11,16 +11,12 @@ export default function VansFilters() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const vansTypes = vansData.map(
-      (van) => van.type
-    );
+    const vansTypes = vansData.map((van) => van.type);
     const filterOptions = vansTypes
       .sort()
       .filter((data, index, arr) => data !== arr[index - 1]);
     dispatch(setFilterOptions(filterOptions));
   }, [dispatch, vansData]);
-
-  // console.log(filters, isFiltered, filterOptions);
 
   return (
     <div className="flex items-center justify-between">

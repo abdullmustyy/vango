@@ -1,5 +1,5 @@
 import VansFilters from "../components/VansFilters";
-import VansShowcase from "../components/vansShowcase";
+import VansShowcase from "../components/VansShowcase";
 
 export default function VansPage() {
   return (

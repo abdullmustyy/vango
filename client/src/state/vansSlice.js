@@ -11,10 +11,10 @@ const vansSlice = createSlice({
   initialState,
   reducers: {
     filter(state, action) {
-      if (state.filters.includes(action.payload)) {
+      if (state.filters.some((filter) => filter.type === action.payload.type)) {
         state.isFiltered = state.filters.length > 1 ? true : false;
         state.filters = state.filters.filter(
-          (filter) => filter !== action.payload
+          (filter) => filter.type !== action.payload.type
         );
       } else {
         state.isFiltered = true;

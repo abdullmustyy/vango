@@ -11,10 +11,18 @@ export default function VansFilters() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const vansTypes = vansData.map((van) => van.type);
+    const vansTypes = vansData.map((van, index) => ({
+      id: index,
+      type: van.type,
+      typeBg: van.typeBg,
+    }));
     const filterOptions = vansTypes
-      .sort()
-      .filter((data, index, arr) => data !== arr[index - 1]);
+      .sort((a, b) => {
+        const typeA = a.type.toUpperCase();
+        const typeB = b.type.toUpperCase();
+        return typeA < typeB ? -1 : typeA > typeB ? 1 : 0;
+      })
+      .filter((data, index, arr) => data.type !== arr[index - 1]?.type);
     dispatch(setFilterOptions(filterOptions));
   }, [dispatch, vansData]);
 
@@ -22,23 +30,32 @@ export default function VansFilters() {
     <div className="flex items-center justify-between">
       <div className="space-x-8">
         {filters &&
-          filters.map((filterOption) => (
-            <button
-              key={filterOption}
-              onClick={() => dispatch(filter(filterOption))}
-              className="bg-[#FFEAD0] hover:bg-inherit hover:outline hover:outline-2 hover:outline-[#FFEAD0] text-[#4D4D4D] text-base font-medium rounded-md py-2 px-6 transition"
-            >
-              {filterOption}
-            </button>
-          ))}
+          filters.map((filterOption) => {
+            const styles = {
+              color: isFiltered ? "#FFEAD0" : "#4D4D4D",
+            };
+
+            return (
+              <button
+                key={filterOption.id}
+                onClick={() => dispatch(filter(filterOption))}
+                style={styles}
+                className={`${
+                  isFiltered ? filterOption.typeBg : "bg-[#FFEAD0]"
+                } hover:bg-inherit hover:outline hover:outline-2 hover:outline-[#FFEAD0] text-base hover:text-[#4D4D4D] font-medium rounded-md py-2 px-6 transition`}
+              >
+                {filterOption.type}
+              </button>
+            );
+          })}
         {!isFiltered &&
           filterOptions.map((option) => (
             <button
-              key={option}
+              key={option.id}
               onClick={() => dispatch(filter(option))}
               className="bg-[#FFEAD0] hover:bg-inherit hover:outline hover:outline-2 hover:outline-[#FFEAD0] text-[#4D4D4D] text-base font-medium rounded-md py-2 px-6 transition"
             >
-              {option}
+              {option.type}
             </button>
           ))}
       </div>

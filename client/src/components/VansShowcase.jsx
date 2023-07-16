@@ -7,7 +7,9 @@ export default function VansShowcase() {
   const vansData = useContext(VansContext);
   const vansProcessedData = !isFiltered
     ? vansData
-    : vansData.filter((data) => filters.includes(data.type));
+    : vansData.filter((data) =>
+        filters.some((filter) => filter.type === data.type)
+      );
 
   return (
     <div className="grid grid-cols-2 sm:gap-12 gap-6">

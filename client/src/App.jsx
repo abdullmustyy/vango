@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import VansPage from "./pages/VansPage";
+import VansDetailsPage from "./pages/VansDetailsPage";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 
@@ -43,6 +44,7 @@ export default function App() {
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/about" element={<AboutPage />}></Route>
           <Route path="/vans" element={<VansPage />}></Route>
+          <Route path="/vans/:id" element={<VansDetailsPage />}></Route>
         </Routes>
       </VansContext.Provider>
       <Footer />

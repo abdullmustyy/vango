@@ -4,6 +4,9 @@ import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import VansPage from "./pages/Vans/VansPage";
 import VansDetailsPage from "./pages/Vans/VansDetailsPage";
+import Dashboard from "./pages/Host/Dashboard";
+import Income from "./pages/Host/Income";
+import Reviews from "./pages/Host/Reviews";
 import Layout from "./components/Layout";
 
 import "./server";
@@ -45,6 +48,9 @@ export default function App() {
             <Route path="/vans" element={<VansPage />} />
             <Route path="/vans/:id" element={<VansDetailsPage />} />
           </Route>
+          <Route path="/host" element={<Dashboard />} />
+          <Route path="/host/income" element={<Income />} />
+          <Route path="/host/reviews" element={<Reviews />} />
         </Routes>
       </VansContext.Provider>
     </BrowserRouter>

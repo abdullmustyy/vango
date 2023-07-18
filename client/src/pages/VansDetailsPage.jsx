@@ -1,9 +1,12 @@
 import { useParams, Link } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setVansDetails } from "../state/vansSlice";
 
 export default function VansDetailsPage() {
-  const [vanDetails, setVanDetails] = useState({});
+  const { vanDetails } = useSelector((state) => state.vans);
+  const dispatch = useDispatch();
   const params = useParams();
   const vanId = params.id;
 
@@ -21,10 +24,10 @@ export default function VansDetailsPage() {
             : "[#115E59]",
         type: data.vans.type.charAt(0).toUpperCase() + data.vans.type.slice(1),
       };
-      setVanDetails(data.vans);
+      dispatch(setVansDetails(data.vans));
     };
     getVanDetail();
-  }, [vanId]);
+  }, [dispatch, vanId]);
 
   return (
     <section className="container mx-auto text-[#201F1D] sm:px-0 px-4">
@@ -62,7 +65,7 @@ export default function VansDetailsPage() {
               {vanDetails.description}
             </p>
             <button
-              className={`bg-${vanDetails.typeBg} text-white text-lg font-bold w-1/2 py-3 rounded-lg`}
+              className={`bg-${vanDetails.typeBg} text-white text-lg font-bold w-1/2 py-3 rounded-lg opacity-100 hover:opacity-90`}
             >
               Rent this van
             </button>

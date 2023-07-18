@@ -4,6 +4,7 @@ const initialState = {
   filters: [],
   isFiltered: false,
   filterOptions: [],
+  vanDetails: {},
 };
 
 const vansSlice = createSlice({
@@ -28,8 +29,11 @@ const vansSlice = createSlice({
     setFilterOptions(state, action) {
       state.filterOptions = action.payload;
     },
+    setVansDetails(state, action) {
+      state.vanDetails = action.payload;
+    },
   },
 });
 
-export const { filter, clearFilter, setFilterOptions } = vansSlice.actions;
+export const { filter, clearFilter, setFilterOptions, setVansDetails } = vansSlice.actions;
 export default vansSlice.reducer;

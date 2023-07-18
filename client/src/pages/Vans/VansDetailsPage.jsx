@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setVansDetails } from "../state/vansSlice";
+import { setVansDetails } from "../../state/vansSlice";
 
 export default function VansDetailsPage() {
   const { vanDetails } = useSelector((state) => state.vans);

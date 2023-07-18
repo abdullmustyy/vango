@@ -13,6 +13,7 @@ export default function NavBar() {
           </Link>
         </div>
         <div className="flex space-x-6 items-center text-base font-semibold text-[#4D4D4D]">
+          <Link to="/host">Host</Link>
           <Link to="/about">About</Link>
           <Link to="/vans">Vans</Link>
         </div>

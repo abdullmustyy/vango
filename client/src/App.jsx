@@ -2,8 +2,8 @@ import { useState, useEffect, createContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
-import VansPage from "./pages/VansPage";
-import VansDetailsPage from "./pages/VansDetailsPage";
+import VansPage from "./pages/Vans/VansPage";
+import VansDetailsPage from "./pages/Vans/VansDetailsPage";
 import Layout from "./components/Layout";
 
 import "./server";

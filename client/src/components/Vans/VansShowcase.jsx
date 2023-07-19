@@ -1,11 +1,8 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
 import { useSelector } from "react-redux";
-import { VansContext } from "../../App";
 
 export default function VansShowcase() {
-  const { filters, isFiltered } = useSelector((state) => state.vans);
-  const vansData = useContext(VansContext);
+  const { filters, isFiltered, vansData } = useSelector((state) => state.vans);
   const vansProcessedData = !isFiltered
     ? vansData
     : vansData.filter((data) =>

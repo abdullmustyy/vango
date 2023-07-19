@@ -1,5 +1,7 @@
-import { useState, useEffect, createContext } from "react";
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setVansData } from "./state/vansSlice";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import VansPage from "./pages/Vans/VansPage";
@@ -7,15 +9,15 @@ import VansDetailsPage from "./pages/Vans/VansDetailsPage";
 import Dashboard from "./pages/Host/Dashboard";
 import Income from "./pages/Host/Income";
 import Reviews from "./pages/Host/Reviews";
+import HostVans from "./pages/Host/HostVans";
+import HostVanDetail from "./pages/Host/HostVanDetail";
 import Layout from "./components/Layout/Layout";
 import HostLayout from "./components/Layout/HostLayout";
 
 import "./server";
 
-export const VansContext = createContext();
-
 export default function App() {
-  const [vansData, setVansData] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     async function getVans() {
@@ -34,28 +36,28 @@ export default function App() {
           type: data.type.charAt(0).toUpperCase() + data.type.slice(1),
         };
       });
-      setVansData(processedData);
+      dispatch(setVansData(processedData));
     }
     getVans();
-  }, []);
+  }, [dispatch]);
 
   return (
     <BrowserRouter>
-      <VansContext.Provider value={vansData}>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<HomePage />} />
-            <Route path="about" element={<AboutPage />} />
-            <Route path="vans" element={<VansPage />} />
-            <Route path="vans/:id" element={<VansDetailsPage />} />
-            <Route path="host" element={<HostLayout />}>
-              <Route index element={<Dashboard />} />
-              <Route path="income" element={<Income />} />
-              <Route path="reviews" element={<Reviews />} />
-            </Route>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="about" element={<AboutPage />} />
+          <Route path="vans" element={<VansPage />} />
+          <Route path="vans/:id" element={<VansDetailsPage />} />
+          <Route path="host" element={<HostLayout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="income" element={<Income />} />
+            <Route path="reviews" element={<Reviews />} />
+            <Route path="vans" element={<HostVans />} />
+            <Route path="vans/:id" element={<HostVanDetail />} />
           </Route>
-        </Routes>
-      </VansContext.Provider>
+        </Route>
+      </Routes>
     </BrowserRouter>
   );
 }

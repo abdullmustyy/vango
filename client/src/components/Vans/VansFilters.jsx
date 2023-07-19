@@ -1,11 +1,9 @@
-import { useContext, useEffect } from "react";
-import { VansContext } from "../../App";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { filter, clearFilter, setFilterOptions } from "../../state/vansSlice";
 
 export default function VansFilters() {
-  const vansData = useContext(VansContext);
-  const { filters, isFiltered, filterOptions } = useSelector(
+  const { filters, isFiltered, filterOptions, vansData } = useSelector(
     (state) => state.vans
   );
   const dispatch = useDispatch();

@@ -43,15 +43,15 @@ export default function App() {
     <BrowserRouter>
       <VansContext.Provider value={vansData}>
         <Routes>
-          <Route element={<Layout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/vans" element={<VansPage />} />
-            <Route path="/vans/:id" element={<VansDetailsPage />} />
-            <Route element={<HostLayout />}>
-              <Route path="/host" element={<Dashboard />} />
-              <Route path="/host/income" element={<Income />} />
-              <Route path="/host/reviews" element={<Reviews />} />
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route path="about" element={<AboutPage />} />
+            <Route path="vans" element={<VansPage />} />
+            <Route path="vans/:id" element={<VansDetailsPage />} />
+            <Route path="host" element={<HostLayout />}>
+              <Route index element={<Dashboard />} />
+              <Route path="income" element={<Income />} />
+              <Route path="reviews" element={<Reviews />} />
             </Route>
           </Route>
         </Routes>

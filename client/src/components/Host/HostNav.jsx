@@ -1,27 +1,43 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function HostNav() {
+  const activeStyle = {
+    color: "black",
+    textDecoration: "underline",
+  };
+
   return (
     <nav className="bg-[#FFF7ED] py-6 md:px-0 px-4">
       <div className="container mx-auto text-base text-[#161616] font-medium space-x-6">
-        <Link to="/host" className="hover:text-black hover:font-semibold hover:underline transition">
+        <NavLink
+          end
+          to="/host"
+          style={({ isActive }) => (isActive ? activeStyle : null)}
+          className="hover:text-black hover:font-semibold hover:underline transition"
+        >
           Dashboard
-        </Link>
-        <Link
+        </NavLink>
+        <NavLink
           to="/host/income"
+          style={({ isActive }) => (isActive ? activeStyle : null)}
           className="hover:text-black hover:font-semibold hover:underline transition"
         >
           Income
-        </Link>
-        <Link to="/host/vans" className="hover:text-black hover:font-semibold hover:underline transition">
+        </NavLink>
+        <NavLink
+          to="/host/vans"
+          style={({ isActive }) => (isActive ? activeStyle : null)}
+          className="hover:text-black hover:font-semibold hover:underline transition"
+        >
           Vans
-        </Link>
-        <Link
+        </NavLink>
+        <NavLink
           to="/host/reviews"
+          style={({ isActive }) => (isActive ? activeStyle : null)}
           className="hover:text-black hover:font-semibold hover:underline transition"
         >
           Reviews
-        </Link>
+        </NavLink>
       </div>
     </nav>
   );

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setVansData } from "./state/vansSlice";
+import { setHostVansData } from "./state/hostSlice";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import VansPage from "./pages/Vans/VansPage";
@@ -38,7 +39,15 @@ export default function App() {
       });
       dispatch(setVansData(processedData));
     }
+
+    async function getHostVans() {
+      const res = await fetch("/api/host/vans");
+      const data = await res.json();
+      dispatch(setHostVansData(data.vans));
+    }
+
     getVans();
+    getHostVans();
   }, [dispatch]);
 
   return (

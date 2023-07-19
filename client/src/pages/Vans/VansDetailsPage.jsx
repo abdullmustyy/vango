@@ -43,7 +43,7 @@ export default function VansDetailsPage() {
       <main className="my-10 grid sm:grid-cols-2 gap-10">
         <section className="my-8">
           <div
-            className={`outline-${vanDetails.typeBg} rounded-full max-w-2xl outline outline-offset-1 outline-2`}
+            className={`outline-${vanDetails.typeBg} rounded-full max-w-2xl outline outline-offset-1 outline-[1px]`}
           >
             <img
               src={vanDetails.imageUrl}

@@ -14,7 +14,7 @@ export default function VansShowcase() {
       {vansProcessedData.map((data) => (
         <Link to={`/vans/${data.id}`} key={data.id}>
           <div className="flex flex-col sm:space-y-4 space-y-2 shadow-inner">
-            <div className="rounded-lg outline outline-[#4D4D4D] outline-offset-1 outline-2">
+            <div className="rounded-lg outline outline-[#4D4D4D] outline-offset-1 outline-[1px]">
               <img
                 src={data.imageUrl}
                 alt={data.name}

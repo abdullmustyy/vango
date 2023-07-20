@@ -5,7 +5,9 @@ export default function HostPricing() {
 
   return (
     <section>
-      <span className="text-[#161616] text-2xl font-semibold">${hostVanDetails.price}/day</span>
+      <span className="text-[#161616] text-2xl font-semibold">
+        ${hostVanDetails.price}/day
+      </span>
     </section>
   );
 }

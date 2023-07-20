@@ -40,8 +40,8 @@ export default function HostVanDetailLayout() {
     <section className="bg-[#FFF7ED] py-8 md:px-0 px-4">
       <header className="container mx-auto">
         <Link
-          to="/host/vans"
-          className="flex items-center space-x-4 text-base font-medium underline"
+          to="../vans"
+          className="flex items-center space-x-4 text-base font-medium underline w-fit"
         >
           <FaArrowLeftLong />
           <h2>Back to all vans</h2>
@@ -74,21 +74,21 @@ export default function HostVanDetailLayout() {
           <nav className="text-base text-[#161616] font-medium space-x-8">
             <NavLink
               end
-              to={`/host/vans/${vanId}`}
+              to="."
               style={({ isActive }) => (isActive ? activeStyle : null)}
               className="hover:text-black hover:font-semibold hover:underline transition"
             >
               Details
             </NavLink>
             <NavLink
-              to={`/host/vans/${vanId}/pricing`}
+              to="pricing"
               style={({ isActive }) => (isActive ? activeStyle : null)}
               className="hover:text-black hover:font-semibold hover:underline transition"
             >
               Pricing
             </NavLink>
             <NavLink
-              to={`/host/vans/${vanId}/photos`}
+              to="photos"
               style={({ isActive }) => (isActive ? activeStyle : null)}
               className="hover:text-black hover:font-semibold hover:underline transition"
             >

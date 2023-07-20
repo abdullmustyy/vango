@@ -33,7 +33,7 @@ export default function VansDetailsPage() {
     <section className="container mx-auto text-[#201F1D] sm:px-0 px-4">
       <header className="my-8">
         <Link
-          to="/vans"
+          to="../vans"
           className="flex items-center space-x-4 text-base font-medium underline"
         >
           <FaArrowLeftLong />

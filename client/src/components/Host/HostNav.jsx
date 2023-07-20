@@ -11,28 +11,28 @@ export default function HostNav() {
       <div className="container mx-auto text-base text-[#161616] font-medium space-x-6">
         <NavLink
           end
-          to="/host"
+          to="."
           style={({ isActive }) => (isActive ? activeStyle : null)}
           className="hover:text-black hover:font-semibold hover:underline transition"
         >
           Dashboard
         </NavLink>
         <NavLink
-          to="/host/income"
+          to="income"
           style={({ isActive }) => (isActive ? activeStyle : null)}
           className="hover:text-black hover:font-semibold hover:underline transition"
         >
           Income
         </NavLink>
         <NavLink
-          to="/host/vans"
+          to="vans"
           style={({ isActive }) => (isActive ? activeStyle : null)}
           className="hover:text-black hover:font-semibold hover:underline transition"
         >
           Vans
         </NavLink>
         <NavLink
-          to="/host/reviews"
+          to="reviews"
           style={({ isActive }) => (isActive ? activeStyle : null)}
           className="hover:text-black hover:font-semibold hover:underline transition"
         >

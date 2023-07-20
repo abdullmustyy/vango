@@ -13,7 +13,7 @@ export default function HomePage() {
             perfect van to make your perfect road trip.
           </p>
           <Link
-            to="/vans"
+            to="vans"
             className="bg-[#FF8C38] opacity-100 hover:opacity-90   text-lg font-bold md:w-96 w-80 py-4 text-center rounded-lg transition"
           >
             Find your van

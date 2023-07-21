@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -9,6 +9,7 @@ export default function VansDetailsPage() {
   const dispatch = useDispatch();
   const params = useParams();
   const vanId = params.id;
+  const { state } = useLocation();
 
   useEffect(() => {
     const getVanDetail = async () => {
@@ -33,12 +34,15 @@ export default function VansDetailsPage() {
     <section className="container mx-auto text-[#201F1D] sm:px-0 px-4">
       <header className="my-8">
         <Link
-          to=".."
+          to={state.search ? `..?${state.search}` : ".."}
           relative="path"
           className="flex items-center space-x-4 text-base font-medium underline"
         >
           <FaArrowLeftLong />
-          <h2>Back to all vans</h2>
+          <h2>
+            Back to {state.values.length > 0 ? state.values.toString() : "all"}{" "}
+            vans
+          </h2>
         </Link>
       </header>
       <main className="my-10 grid sm:grid-cols-2 gap-10">

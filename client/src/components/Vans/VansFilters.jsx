@@ -6,7 +6,6 @@ export default function VansFilters() {
   const { filterOptions } = useSelector((state) => state.vans);
   const [searchParams, setSearchParams] = useSearchParams();
   const typeFilter = Array.from(searchParams.values());
-  console.log(typeFilter);
 
   return (
     <div className="flex items-center justify-between">

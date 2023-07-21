@@ -13,7 +13,7 @@ export default function HostVans() {
         </p>
         <div className="grid md:grid-cols-3 grid-cols-2 gap-8 pt-6">
           {hostVansData.map((vanData) => (
-            <Link to={`${vanData.id}`} key={vanData.id}>
+            <Link to={vanData.id} key={vanData.id}>
               <div className="flex flex-col space-y-2">
                 <h1 className="text-lg font-semibold">{vanData.name}</h1>
                 <div className="rounded-tr-[3rem] rounded-bl-[3rem] outline outline-offset-2 outline-[1px]">

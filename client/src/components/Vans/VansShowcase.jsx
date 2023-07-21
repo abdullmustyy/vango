@@ -3,11 +3,12 @@ import { useSelector } from "react-redux";
 
 export default function VansShowcase() {
   const [searchParams] = useSearchParams();
-  const typeFilter = searchParams.get("type");
+  const typeFilter = Array.from(searchParams.values());
   const { vansData } = useSelector((state) => state.vans);
-  const vansProcessedData = typeFilter
-    ? vansData.filter((data) => data.type.toLowerCase() === typeFilter)
-    : vansData;
+  const vansProcessedData =
+    typeFilter.length > 0
+      ? vansData.filter((data) => typeFilter.includes(data.type.toLowerCase()))
+      : vansData;
 
   return (
     <div className="grid grid-cols-2 sm:gap-12 gap-6">

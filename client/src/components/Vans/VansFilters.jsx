@@ -4,7 +4,8 @@ import { useSearchParams } from "react-router-dom";
 export default function VansFilters() {
   const { filterOptions } = useSelector((state) => state.vans);
   const [searchParams, setSearchParams] = useSearchParams();
-  const typeFilter = searchParams.get("type");
+  const typeFilter = Array.from(searchParams.values());
+  console.log(typeFilter);
 
   return (
     <div className="flex items-center justify-between">
@@ -13,10 +14,18 @@ export default function VansFilters() {
           <button
             key={option.id}
             onClick={() => {
-              setSearchParams({ type: option.type.toLowerCase() });
+              setSearchParams((prevSearchParams) => {
+                !prevSearchParams.has(`type${option.id}`)
+                  ? prevSearchParams.append(
+                      `type${option.id}`,
+                      option.type.toLowerCase()
+                    )
+                  : prevSearchParams.delete(`type${option.id}`);
+                return prevSearchParams;
+              });
             }}
             className={`${
-              typeFilter === option.type.toLowerCase()
+              typeFilter.includes(option.type.toLowerCase())
                 ? option.typeBg
                 : "bg-[#FFEAD0] hover:outline hover:outline-2 hover:outline-[#FFEAD0]"
             } text-[#4D4D4D] text-base font-medium rounded-md py-2 px-6 transition`}
@@ -25,7 +34,7 @@ export default function VansFilters() {
           </button>
         ))}
       </div>
-      {typeFilter && (
+      {typeFilter.length > 0 && (
         <button
           onClick={() => {
             setSearchParams({});

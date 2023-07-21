@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  filters: [],
   isFiltered: false,
   filterOptions: [],
   vanDetails: {},
@@ -12,19 +11,10 @@ const vansSlice = createSlice({
   name: "vans",
   initialState,
   reducers: {
-    filter(state, action) {
-      if (state.filters.some((filter) => filter.type === action.payload.type)) {
-        state.isFiltered = state.filters.length > 1 ? true : false;
-        state.filters = state.filters.filter(
-          (filter) => filter.type !== action.payload.type
-        );
-      } else {
-        state.isFiltered = true;
-        state.filters.push(action.payload);
-      }
+    setIsFiltered(state) {
+      state.isFiltered = !state.isFiltered;
     },
     clearFilter(state) {
-      state.filters = [];
       state.isFiltered = false;
     },
     setFilterOptions(state, action) {
@@ -40,7 +30,7 @@ const vansSlice = createSlice({
 });
 
 export const {
-  filter,
+  setIsFiltered,
   clearFilter,
   setFilterOptions,
   setVansData,

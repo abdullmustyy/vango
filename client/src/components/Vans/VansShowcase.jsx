@@ -1,13 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 export default function VansShowcase() {
-  const { filters, isFiltered, vansData } = useSelector((state) => state.vans);
-  const vansProcessedData = !isFiltered
-    ? vansData
-    : vansData.filter((data) =>
-        filters.some((filter) => filter.type === data.type)
-      );
+  const [searchParams] = useSearchParams();
+  const typeFilter = searchParams.get("type");
+  const { vansData } = useSelector((state) => state.vans);
+  const vansProcessedData = typeFilter
+    ? vansData.filter((data) => data.type.toLowerCase() === typeFilter)
+    : vansData;
 
   return (
     <div className="grid grid-cols-2 sm:gap-12 gap-6">

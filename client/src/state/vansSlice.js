@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  isFiltered: false,
   filterOptions: [],
   vanDetails: {},
   vansData: [],
@@ -11,12 +10,6 @@ const vansSlice = createSlice({
   name: "vans",
   initialState,
   reducers: {
-    setIsFiltered(state) {
-      state.isFiltered = !state.isFiltered;
-    },
-    clearFilter(state) {
-      state.isFiltered = false;
-    },
     setFilterOptions(state, action) {
       state.filterOptions = action.payload;
     },
@@ -30,8 +23,6 @@ const vansSlice = createSlice({
 });
 
 export const {
-  setIsFiltered,
-  clearFilter,
   setFilterOptions,
   setVansData,
   setVansDetails,

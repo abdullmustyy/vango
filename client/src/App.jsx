@@ -30,10 +30,10 @@ export default function App() {
       const processedData = data.vans.map((data) => {
         const typeBg =
           data.type === "simple"
-            ? "bg-[#E17654]"
+            ? "bg-[#E17654] text-white hover:outline hover:outline-2 hover:outline-[#E17654]"
             : data.type === "luxury"
-            ? "bg-[#161616]"
-            : "bg-[#115E59]";
+            ? "bg-[#161616] text-white hover:outline hover:outline-2 hover:outline-[#161616]"
+            : "bg-[#115E59] text-white hover:outline hover:outline-2 hover:outline-[#115E59]";
         return {
           ...data,
           typeBg: typeBg,

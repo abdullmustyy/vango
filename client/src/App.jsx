@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setVansData } from "./state/vansSlice";
 import { setHostVansData } from "./state/hostSlice";
+// Pages imports
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import VansPage from "./pages/Vans/VansPage";
@@ -14,10 +15,12 @@ import HostVans from "./pages/Host/HostVans";
 import HostVanDetail from "./pages/Host/HostVanDetail";
 import HostPricing from "./pages/Host/HostPricing";
 import HostVanPhotos from "./pages/Host/HostVanPhotos";
+import NotFoundPage from "./pages/NotFoundPage";
+// Layout components imports
 import Layout from "./components/Layout/Layout";
 import HostLayout from "./components/Layout/HostLayout";
 import HostVanDetailLayout from "./components/Layout/HostVanDetailLayout";
-
+// Server import
 import "./server";
 
 export default function App() {
@@ -72,6 +75,7 @@ export default function App() {
               <Route path="photos" element={<HostVanPhotos />} />
             </Route>
           </Route>
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

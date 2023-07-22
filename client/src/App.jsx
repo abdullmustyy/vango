@@ -1,5 +1,10 @@
 import { useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
+  Route,
+} from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setVansData } from "./state/vansSlice";
 import { setHostVansData } from "./state/hostSlice";
@@ -56,28 +61,28 @@ export default function App() {
     getHostVans();
   }, [dispatch]);
 
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path="about" element={<AboutPage />} />
-          <Route path="vans" element={<VansPage />} />
-          <Route path="vans/:id" element={<VansDetailsPage />} />
-          <Route path="host" element={<HostLayout />}>
-            <Route index element={<Dashboard />} />
-            <Route path="income" element={<Income />} />
-            <Route path="reviews" element={<Reviews />} />
-            <Route path="vans" element={<HostVans />} />
-            <Route path="vans/:id" element={<HostVanDetailLayout />}>
-              <Route index element={<HostVanDetail />} />
-              <Route path="pricing" element={<HostPricing />} />
-              <Route path="photos" element={<HostVanPhotos />} />
-            </Route>
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route path="about" element={<AboutPage />} />
+        <Route path="vans" element={<VansPage />} />
+        <Route path="vans/:id" element={<VansDetailsPage />} />
+        <Route path="host" element={<HostLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="income" element={<Income />} />
+          <Route path="reviews" element={<Reviews />} />
+          <Route path="vans" element={<HostVans />} />
+          <Route path="vans/:id" element={<HostVanDetailLayout />}>
+            <Route index element={<HostVanDetail />} />
+            <Route path="pricing" element={<HostPricing />} />
+            <Route path="photos" element={<HostVanPhotos />} />
           </Route>
-          <Route path="*" element={<NotFoundPage />} />
         </Route>
-      </Routes>
-    </BrowserRouter>
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
+    )
   );
+
+  return <RouterProvider router={router} />;
 }

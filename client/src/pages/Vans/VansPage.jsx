@@ -1,14 +1,15 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setFilterOptions } from "../../state/vansSlice";
+import { setFilterOptions, setLoading } from "../../state/vansSlice";
 import VansFilters from "../../components/Vans/VansFilters";
 import VansShowcase from "../../components/Vans/VansShowcase";
 
 export default function VansPage() {
-  const { vansData } = useSelector((state) => state.vans);
+  const { vansData, loading } = useSelector((state) => state.vans);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(setLoading(true));
     const vansTypes = vansData.map((van, index) => ({
       id: index,
       type: van.type,
@@ -23,6 +24,17 @@ export default function VansPage() {
       .filter((data, index, arr) => data.type !== arr[index - 1]?.type);
     dispatch(setFilterOptions(options));
   }, [dispatch, vansData]);
+
+  if (loading) {
+    setTimeout(() => {
+      dispatch(setLoading(false));
+    }, 500);
+    return (
+      <section className="container mx-auto py-12">
+        <h1 className="text-black text-xl font-extrabold">Loading...</h1>
+      </section>
+    );
+  }
 
   return (
     <section className="container mx-auto my-12 md:px-0 px-4 text-[#161616]">

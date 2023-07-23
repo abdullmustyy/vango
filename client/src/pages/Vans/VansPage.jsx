@@ -1,15 +1,17 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { setFilterOptions, setLoading } from "../../state/vansSlice";
+import { useEffect, createContext } from "react";
+import { useDispatch } from "react-redux";
+import { useLoaderData } from "react-router-dom";
+import { setFilterOptions } from "../../state/vansSlice";
 import VansFilters from "../../components/Vans/VansFilters";
 import VansShowcase from "../../components/Vans/VansShowcase";
 
+export const VansContext = createContext();
+
 export default function VansPage() {
-  const { vansData, loading } = useSelector((state) => state.vans);
+  const vansData = useLoaderData();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setLoading(true));
     const vansTypes = vansData.map((van, index) => ({
       id: index,
       type: van.type,
@@ -25,17 +27,6 @@ export default function VansPage() {
     dispatch(setFilterOptions(options));
   }, [dispatch, vansData]);
 
-  if (loading) {
-    setTimeout(() => {
-      dispatch(setLoading(false));
-    }, 500);
-    return (
-      <section className="container mx-auto py-12">
-        <h1 className="text-black text-xl font-extrabold">Loading...</h1>
-      </section>
-    );
-  }
-
   return (
     <section className="container mx-auto my-12 md:px-0 px-4 text-[#161616]">
       <header className="mb-12 space-y-4">
@@ -46,7 +37,9 @@ export default function VansPage() {
         <VansFilters />
       </header>
       <main>
-        <VansShowcase />
+        <VansContext.Provider value={{ vansData }}>
+          <VansShowcase />
+        </VansContext.Provider>
       </main>
     </section>
   );

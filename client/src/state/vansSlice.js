@@ -3,8 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   filterOptions: [],
   vanDetails: {},
-  vansData: [],
-  loading: false,
+  error: null,
 };
 
 const vansSlice = createSlice({
@@ -17,15 +16,11 @@ const vansSlice = createSlice({
     setVansDetails(state, action) {
       state.vanDetails = action.payload;
     },
-    setVansData(state, action) {
-      state.vansData = action.payload;
-    },
-    setLoading(state, action) {
-      state.loading = action.payload;
+    setError(state, action) {
+      state.error = action.payload;
     },
   },
 });
 
-export const { setFilterOptions, setVansData, setVansDetails, setLoading } =
-  vansSlice.actions;
+export const { setFilterOptions, setVansDetails, setError } = vansSlice.actions;
 export default vansSlice.reducer;

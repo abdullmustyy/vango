@@ -1,10 +1,11 @@
 import { Link, useSearchParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useContext } from "react";
+import { VansContext } from "../../pages/Vans/VansPage";
 
 export default function VansShowcase() {
+  const { vansData } = useContext(VansContext);
   const [searchParams] = useSearchParams();
   const typeFilter = Array.from(searchParams.values());
-  const { vansData } = useSelector((state) => state.vans);
   const vansProcessedData =
     typeFilter.length > 0
       ? vansData.filter((data) => typeFilter.includes(data.type.toLowerCase()))

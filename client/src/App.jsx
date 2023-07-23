@@ -6,7 +6,6 @@ import {
   Route,
 } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setVansData } from "./state/vansSlice";
 import { setHostVansData } from "./state/hostSlice";
 // Pages imports
 import HomePage from "./pages/HomePage";
@@ -21,6 +20,9 @@ import HostVanDetail from "./pages/Host/HostVanDetail";
 import HostPricing from "./pages/Host/HostPricing";
 import HostVanPhotos from "./pages/Host/HostVanPhotos";
 import NotFoundPage from "./pages/NotFoundPage";
+import Error from "./components/Error";
+// Loaders imports
+import { vansPageLoader } from "./pages/Vans/vansLoader";
 // Layout components imports
 import Layout from "./components/Layout/Layout";
 import HostLayout from "./components/Layout/HostLayout";
@@ -32,32 +34,12 @@ export default function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    async function getVans() {
-      const res = await fetch("/api/vans");
-      const data = await res.json();
-      const processedData = data.vans.map((data) => {
-        const typeBg =
-          data.type === "simple"
-            ? "bg-[#E17654] text-white hover:outline hover:outline-2 hover:outline-[#E17654]"
-            : data.type === "luxury"
-            ? "bg-[#161616] text-white hover:outline hover:outline-2 hover:outline-[#161616]"
-            : "bg-[#115E59] text-white hover:outline hover:outline-2 hover:outline-[#115E59]";
-        return {
-          ...data,
-          typeBg: typeBg,
-          type: data.type.charAt(0).toUpperCase() + data.type.slice(1),
-        };
-      });
-      dispatch(setVansData(processedData));
-    }
-
     async function getHostVans() {
       const res = await fetch("/api/host/vans");
       const data = await res.json();
       dispatch(setHostVansData(data.vans));
     }
 
-    getVans();
     getHostVans();
   }, [dispatch]);
 
@@ -66,7 +48,12 @@ export default function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="about" element={<AboutPage />} />
-        <Route path="vans" element={<VansPage />} />
+        <Route
+          path="vans"
+          element={<VansPage />}
+          errorElement={<Error />}
+          loader={vansPageLoader}
+        />
         <Route path="vans/:id" element={<VansDetailsPage />} />
         <Route path="host" element={<HostLayout />}>
           <Route index element={<Dashboard />} />

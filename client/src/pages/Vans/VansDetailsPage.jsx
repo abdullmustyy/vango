@@ -1,34 +1,9 @@
-import { useParams, Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useLoaderData } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { setVansDetails } from "../../state/vansSlice";
 
 export default function VansDetailsPage() {
-  const { vanDetails } = useSelector((state) => state.vans);
-  const dispatch = useDispatch();
-  const params = useParams();
-  const vanId = params.id;
+  const vanDetails = useLoaderData();
   const { state } = useLocation();
-
-  useEffect(() => {
-    const getVanDetail = async () => {
-      const res = await fetch(`/api/vans/${vanId}`);
-      const data = await res.json();
-      data.vans = {
-        ...data.vans,
-        typeBg:
-          data.vans.type === "simple"
-            ? "[#E17654]"
-            : data.vans.type === "luxury"
-            ? "[#161616]"
-            : "[#115E59]",
-        type: data.vans.type.charAt(0).toUpperCase() + data.vans.type.slice(1),
-      };
-      dispatch(setVansDetails(data.vans));
-    };
-    getVanDetail();
-  }, [dispatch, vanId]);
 
   return (
     <section className="container mx-auto text-[#201F1D] sm:px-0 px-4">

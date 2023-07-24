@@ -27,3 +27,19 @@ export async function getVans() {
   });
   return processedData;
 }
+
+export async function getVanDetail(vanId) {
+  const res = await fetch(`/api/vans/${vanId}`);
+  const data = await res.json();
+  data.vans = {
+    ...data.vans,
+    typeBg:
+      data.vans.type === "simple"
+        ? "[#E17654]"
+        : data.vans.type === "luxury"
+        ? "[#161616]"
+        : "[#115E59]",
+    type: data.vans.type.charAt(0).toUpperCase() + data.vans.type.slice(1),
+  };
+  return data.vans;
+}

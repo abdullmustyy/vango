@@ -20,9 +20,10 @@ import HostVanDetail from "./pages/Host/HostVanDetail";
 import HostPricing from "./pages/Host/HostPricing";
 import HostVanPhotos from "./pages/Host/HostVanPhotos";
 import NotFoundPage from "./pages/NotFoundPage";
+import AuthForm from "./pages/AuthForm";
 import Error from "./components/Error";
 // Loaders imports
-import { vansPageLoader } from "./pages/Vans/vansLoader";
+import { vansPageLoader, vanDetailPageLoader } from "./pages/Vans/vansLoader";
 // Layout components imports
 import Layout from "./components/Layout/Layout";
 import HostLayout from "./components/Layout/HostLayout";
@@ -48,13 +49,18 @@ export default function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="about" element={<AboutPage />} />
+        <Route path="auth" element={<AuthForm />} />
         <Route
           path="vans"
           element={<VansPage />}
           errorElement={<Error />}
           loader={vansPageLoader}
         />
-        <Route path="vans/:id" element={<VansDetailsPage />} />
+        <Route
+          path="vans/:id"
+          element={<VansDetailsPage />}
+          loader={({ params }) => vanDetailPageLoader(params.id)}
+        />
         <Route path="host" element={<HostLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="income" element={<Income />} />

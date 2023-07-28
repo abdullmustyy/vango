@@ -45,7 +45,7 @@ export default function AuthForm() {
             />
             <button
               type="submit"
-              className="bg-[#FF8C38] w-full rounded-md py-2 text-base font-bold text-white place-self-center hover:outline outline-2 outline-[#FF8C38] transition"
+              className="bg-[#FF8C38] w-full rounded-md py-3 text-base font-bold text-white place-self-center hover:outline outline-2 outline-[#FF8C38] transition"
             >
               Sign in
             </button>

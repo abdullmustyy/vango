@@ -26,7 +26,7 @@ export default function VansFilters() {
             }}
             className={`${
               typeFilter.includes(option.type.toLowerCase())
-                ? option.typeBg
+                ? option.buttonStyle
                 : "bg-[#FFEAD0] hover:outline hover:outline-2 hover:outline-[#FFEAD0]"
             } text-[#4D4D4D] text-base font-medium rounded-md py-2 px-6 transition`}
           >

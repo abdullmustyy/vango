@@ -15,7 +15,7 @@ export default function VansPage() {
     const vansTypes = vansData.map((van, index) => ({
       id: index,
       type: van.type,
-      typeBg: van.typeBg,
+      buttonStyle: van.buttonStyle,
     }));
     const options = vansTypes
       .sort((a, b) => {

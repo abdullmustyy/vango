@@ -13,7 +13,7 @@ export async function getVans() {
   }
   const data = await res.json();
   const processedData = data.vans.map((data) => {
-    const typeBg =
+    const buttonStyle =
       data.type === "simple"
         ? "bg-[#E17654] text-white hover:outline hover:outline-2 hover:outline-[#E17654]"
         : data.type === "luxury"
@@ -21,7 +21,7 @@ export async function getVans() {
         : "bg-[#115E59] text-white hover:outline hover:outline-2 hover:outline-[#115E59]";
     return {
       ...data,
-      typeBg: typeBg,
+      buttonStyle: buttonStyle,
       type: data.type.charAt(0).toUpperCase() + data.type.slice(1),
     };
   });

@@ -14,7 +14,7 @@ export default function HomePage() {
           </p>
           <Link
             to="vans"
-            className="bg-[#FF8C38] opacity-100 hover:opacity-90   text-lg font-bold md:w-96 w-80 py-4 text-center rounded-lg transition"
+            className="bg-[#FF8C38] opacity-100 hover:opacity-90 text-lg font-bold md:w-96 w-80 py-3 text-center rounded-lg transition"
           >
             Find your van
           </Link>

@@ -1,6 +1,7 @@
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { MyTextInput } from "../components/FormItems";
+import { useLocation } from "react-router-dom";
 
 const loginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email address.").required("Required"),
@@ -15,7 +16,10 @@ const initialLoginValues = {
   password: "",
 };
 
-export default function AuthForm() {
+export default function AuthPage() {
+  const location = useLocation();
+  console.log(location);
+
   return (
     <section className="container mx-auto grid place-content-center py-32 text-[#161616]">
       <div className="w-[40rem] space-y-6">

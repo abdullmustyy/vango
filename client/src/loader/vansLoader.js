@@ -1,4 +1,4 @@
-import { getVans, getVanDetail } from "../../../api";
+import { getVans, getVanDetail } from "../../api";
 
 export function vansPageLoader() {
   return getVans();

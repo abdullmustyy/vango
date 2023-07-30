@@ -30,6 +30,15 @@ export async function getVans() {
 
 export async function getVanDetail(vanId) {
   const res = await fetch(`/api/vans/${vanId}`);
+  if (!res.ok) {
+    throw json(
+      {
+        message: "Failed to fetch vans",
+        statusText: res.statusText,
+      },
+      res.status
+    );
+  }
   const data = await res.json();
   data.vans = {
     ...data.vans,
@@ -42,4 +51,36 @@ export async function getVanDetail(vanId) {
     type: data.vans.type.charAt(0).toUpperCase() + data.vans.type.slice(1),
   };
   return data.vans;
+}
+
+export async function getHostVans() {
+  const res = await fetch("/api/host/vans");
+  if (!res.ok) {
+    throw json(
+      {
+        message: "Failed to fetch vans",
+        statusText: res.statusText,
+      },
+      res.status
+    );
+  }
+  const data = await res.json();
+  return data.vans;
+}
+
+export async function getHostVanDetail(vanId) {
+  const res = await fetch(`/api/host/vans/${vanId}`);
+  const data = await res.json();
+  data.vans[0] = {
+    ...data.vans[0],
+    typeBg:
+      data.vans[0].type === "simple"
+        ? "[#E17654]"
+        : data.vans[0].type === "luxury"
+        ? "[#161616]"
+        : "[#115E59]",
+    type:
+      data.vans[0].type.charAt(0).toUpperCase() + data.vans[0].type.slice(1),
+  };
+  return data.vans[0];
 }

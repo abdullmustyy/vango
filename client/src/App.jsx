@@ -1,12 +1,9 @@
-import { useEffect } from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
   RouterProvider,
   Route,
 } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setHostVansData } from "./state/hostSlice";
 // Pages imports
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
@@ -23,7 +20,11 @@ import NotFoundPage from "./pages/NotFoundPage";
 import AuthForm from "./pages/AuthForm";
 import Error from "./components/Error";
 // Loaders imports
-import { vansPageLoader, vanDetailPageLoader } from "./pages/Vans/vansLoader";
+import { vansPageLoader, vanDetailPageLoader } from "./loader/vansLoader";
+import {
+  hostVansPageLoader,
+  hostVanDetailPageLoader,
+} from "./loader/hostVansLoader";
 // Layout components imports
 import Layout from "./components/Layout/Layout";
 import HostLayout from "./components/Layout/HostLayout";
@@ -32,18 +33,6 @@ import HostVanDetailLayout from "./components/Layout/HostVanDetailLayout";
 import "./server";
 
 export default function App() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    async function getHostVans() {
-      const res = await fetch("/api/host/vans");
-      const data = await res.json();
-      dispatch(setHostVansData(data.vans));
-    }
-
-    getHostVans();
-  }, [dispatch]);
-
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Layout />}>
@@ -61,15 +50,71 @@ export default function App() {
           element={<VansDetailsPage />}
           loader={({ params }) => vanDetailPageLoader(params.id)}
         />
-        <Route path="host" element={<HostLayout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="income" element={<Income />} />
-          <Route path="reviews" element={<Reviews />} />
-          <Route path="vans" element={<HostVans />} />
-          <Route path="vans/:id" element={<HostVanDetailLayout />}>
-            <Route index element={<HostVanDetail />} />
-            <Route path="pricing" element={<HostPricing />} />
-            <Route path="photos" element={<HostVanPhotos />} />
+        <Route
+          path="host"
+          element={<HostLayout />}
+          loader={async () => {
+            return null;
+          }}
+        >
+          <Route
+            index
+            element={<Dashboard />}
+            loader={async () => {
+              return null;
+            }}
+          />
+          <Route
+            path="income"
+            element={<Income />}
+            loader={async () => {
+              return null;
+            }}
+          />
+          <Route
+            path="reviews"
+            element={<Reviews />}
+            loader={async () => {
+              return null;
+            }}
+          />
+          <Route
+            path="vans"
+            element={<HostVans />}
+            errorElement={<Error />}
+            loader={async () => {
+              return hostVansPageLoader();
+            }}
+          />
+          <Route
+            path="vans/:id"
+            element={<HostVanDetailLayout />}
+            errorElement={<Error />}
+            loader={async ({ params }) => {
+              return hostVanDetailPageLoader(params.id);
+            }}
+          >
+            <Route
+              index
+              element={<HostVanDetail />}
+              loader={async () => {
+                return null;
+              }}
+            />
+            <Route
+              path="pricing"
+              element={<HostPricing />}
+              loader={async () => {
+                return null;
+              }}
+            />
+            <Route
+              path="photos"
+              element={<HostVanPhotos />}
+              loader={async () => {
+                return null;
+              }}
+            />
           </Route>
         </Route>
         <Route path="*" element={<NotFoundPage />} />

@@ -1,8 +1,8 @@
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 
 export default function HostVans() {
-  const { hostVansData } = useSelector((state) => state.host);
+  const hostVansData = useLoaderData();
 
   return (
     <section className="text-[#161616] bg-[#FFF7ED] pb-8 md:px-0 px-4">

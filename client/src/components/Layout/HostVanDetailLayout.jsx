@@ -1,35 +1,9 @@
-import { useParams, Link, NavLink } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { setHostVanDetails } from "../../state/hostSlice";
-import { useEffect } from "react";
+import { Link, NavLink } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLoaderData } from "react-router-dom";
 
 export default function HostVanDetailLayout() {
-  const { hostVanDetails } = useSelector((state) => state.host);
-  const dispatch = useDispatch();
-  const vanId = useParams().id;
-
-  useEffect(() => {
-    const getHostVanDetail = async () => {
-      const res = await fetch(`/api/host/vans/${vanId}`);
-      const data = await res.json();
-      data.vans[0] = {
-        ...data.vans[0],
-        typeBg:
-          data.vans[0].type === "simple"
-            ? "[#E17654]"
-            : data.vans[0].type === "luxury"
-            ? "[#161616]"
-            : "[#115E59]",
-        type:
-          data.vans[0].type.charAt(0).toUpperCase() +
-          data.vans[0].type.slice(1),
-      };
-      dispatch(setHostVanDetails(data.vans[0]));
-    };
-    getHostVanDetail();
-  }, [dispatch, vanId]);
+  const hostVanDetails = useLoaderData();
 
   const activeStyle = {
     color: "black",
@@ -96,7 +70,7 @@ export default function HostVanDetailLayout() {
               Photos
             </NavLink>
           </nav>
-          <Outlet />
+          <Outlet context={{ hostVanDetails }} />
         </div>
       </main>
     </section>

@@ -1,7 +1,7 @@
-import { useSelector } from "react-redux";
+import { useOutletContext } from "react-router-dom";
 
 export default function HostVanPhotos() {
-  const { hostVanDetails } = useSelector((state) => state.host);
+  const { hostVanDetails } = useOutletContext();
 
   return (
     <section>

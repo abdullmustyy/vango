@@ -1,22 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  hostVansData: [],
-  hostVanDetails: {},
-};
+const initialState = {};
 
 const hostSlice = createSlice({
   name: "host",
   initialState,
-  reducers: {
-    setHostVansData(state, action) {
-      state.hostVansData = action.payload;
-    },
-    setHostVanDetails(state, action) {
-      state.hostVanDetails = action.payload;
-    },
-  },
+  reducers: {},
 });
 
-export const { setHostVansData, setHostVanDetails } = hostSlice.actions;
+// export const {} = hostSlice.actions;
 export default hostSlice.reducer;

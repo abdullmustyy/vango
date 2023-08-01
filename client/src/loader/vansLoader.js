@@ -1,9 +1,10 @@
 import { getVans, getVanDetail } from "../../api";
+import { defer } from "react-router-dom";
 
 export function vansPageLoader() {
-  return getVans();
+  return defer({ vans: getVans() });
 }
 
 export function vanDetailPageLoader(vanId) {
-  return getVanDetail(vanId);
+  return defer({ vanDetails: getVanDetail(vanId) });
 }

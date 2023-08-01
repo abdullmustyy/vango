@@ -31,7 +31,9 @@ export default function AuthPage() {
       .then((data) => {
         console.log(JSON.stringify(data, null, 2));
         localStorage.setItem("isLoggedIn", true);
-        navigate("/host", { replace: true });
+        navigate(location.state?.from || "/", {
+          replace: true,
+        });
       })
       .catch((err) => {
         dispatch(setError(err.message));

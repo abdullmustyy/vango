@@ -10,9 +10,8 @@ export default function ProtectedRoutes() {
     <Navigate
       to="/auth"
       state={{
-        message: `To view the ${location.pathname.slice(
-          1
-        )} page, you have to login.`,
+        from: location.pathname,
+        message: `To view this page, you have to login.`,
       }}
       replace
     />

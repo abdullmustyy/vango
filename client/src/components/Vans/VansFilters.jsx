@@ -8,7 +8,7 @@ export default function VansFilters() {
   const typeFilter = Array.from(searchParams.values());
 
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between mt-4 mb-12">
       <div className="space-x-8">
         {filterOptions.map((option) => (
           <button

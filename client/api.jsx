@@ -12,7 +12,7 @@ export async function getVans() {
     );
   }
   const data = await res.json();
-  const processedData = data.vans.map((data) => {
+  const processedData = await data.vans.map((data) => {
     const buttonStyle =
       data.type === "simple"
         ? "bg-[#E17654] text-white hover:outline hover:outline-2 hover:outline-[#E17654]"
@@ -40,7 +40,7 @@ export async function getVanDetail(vanId) {
     );
   }
   const data = await res.json();
-  data.vans = {
+  data.vans = await {
     ...data.vans,
     typeBg:
       data.vans.type === "simple"
@@ -80,7 +80,7 @@ export async function getHostVanDetail(vanId) {
     );
   }
   const data = await res.json();
-  data.vans = {
+  data.vans = await {
     ...data.vans,
     typeBg:
       data.vans.type === "simple"

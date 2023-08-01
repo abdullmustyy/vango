@@ -2,7 +2,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { MyTextInput } from "../components/FormItems";
 import { useLocation, useNavigate } from "react-router-dom";
-import { loginUser } from "../../api";
+import { loginUser } from "../api";
 import { useSelector, useDispatch } from "react-redux";
 import { setError } from "../state/authSlice";
 

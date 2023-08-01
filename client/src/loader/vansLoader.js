@@ -1,4 +1,4 @@
-import { getVans, getVanDetail } from "../../api";
+import { getVans, getVanDetail } from "../api";
 import { defer } from "react-router-dom";
 
 export function vansPageLoader() {

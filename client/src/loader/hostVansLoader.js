@@ -1,9 +1,10 @@
-import { getHostVans, getHostVanDetail } from "../../api";
+import { getHostVans, getHostVanDetail } from "../api";
+import { defer } from "react-router-dom";
 
 export function hostVansPageLoader() {
-  return getHostVans();
+  return defer({ hostVans: getHostVans() });
 }
 
 export function hostVanDetailPageLoader(vanId) {
-  return getHostVanDetail(vanId);
+  return defer({ hostVanDetails: getHostVanDetail(vanId) });
 }

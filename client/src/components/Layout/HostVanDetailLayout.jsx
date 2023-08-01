@@ -14,8 +14,8 @@ export default function HostVanDetailLayout() {
     <section className="bg-[#FFF7ED] py-8 md:px-0 px-4">
       <header className="container mx-auto">
         <Link
-          to=".."
-          relative="path"
+          to="../vans"
+          // relative="path"
           className="flex items-center space-x-4 text-base font-medium underline w-fit"
         >
           <FaArrowLeftLong />

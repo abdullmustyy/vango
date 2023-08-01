@@ -2,16 +2,17 @@ import { Outlet, Navigate, useLocation } from "react-router-dom";
 
 export default function ProtectedRoutes() {
   const location = useLocation();
-  const isLoggedIn = false;
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
 
-  return isLoggedIn ? (
+  return isLoggedIn === "true" ? (
     <Outlet />
   ) : (
     <Navigate
       to="/auth"
       state={{
-        from: location,
-        message: "You must be logged in to view this page",
+        message: `To view the ${location.pathname.slice(
+          1
+        )} page, you have to login.`,
       }}
       replace
     />

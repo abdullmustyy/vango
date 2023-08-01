@@ -70,17 +70,43 @@ export async function getHostVans() {
 
 export async function getHostVanDetail(vanId) {
   const res = await fetch(`/api/host/vans/${vanId}`);
+  if (!res.ok) {
+    throw json(
+      {
+        message: "Failed to fetch vans",
+        statusText: res.statusText,
+      },
+      res.status
+    );
+  }
   const data = await res.json();
-  data.vans[0] = {
-    ...data.vans[0],
+  data.vans = {
+    ...data.vans,
     typeBg:
-      data.vans[0].type === "simple"
+      data.vans.type === "simple"
         ? "[#E17654]"
-        : data.vans[0].type === "luxury"
+        : data.vans.type === "luxury"
         ? "[#161616]"
         : "[#115E59]",
-    type:
-      data.vans[0].type.charAt(0).toUpperCase() + data.vans[0].type.slice(1),
+    type: data.vans.type.charAt(0).toUpperCase() + data.vans.type.slice(1),
   };
-  return data.vans[0];
+  return data.vans;
+}
+
+export async function loginUser(creds) {
+  const res = await fetch("/api/login", {
+    method: "post",
+    body: JSON.stringify(creds),
+  });
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw {
+      message: data.message,
+      statusText: res.statusText,
+      status: res.status,
+    };
+  }
+
+  return data;
 }

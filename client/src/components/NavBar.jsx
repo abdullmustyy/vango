@@ -39,6 +39,9 @@ export default function NavBar() {
           >
             Vans
           </NavLink>
+          <button onClick={() => localStorage.setItem("isLoggedIn", false)}>
+            Log Out
+          </button>
         </div>
       </div>
     </nav>

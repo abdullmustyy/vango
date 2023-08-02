@@ -9,7 +9,7 @@ export default function HomePage() {
             You got the travel plans, we got the travel vans.
           </h1>
           <p className="text-lg font-extralight">
-            Add adventure to your life by joining the #vango movement. Rent the
+            Add adventure to your life by joining the VanGo movement. Rent the
             perfect van to make your perfect road trip.
           </p>
           <Link

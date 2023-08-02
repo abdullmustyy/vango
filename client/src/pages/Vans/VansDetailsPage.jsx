@@ -22,7 +22,7 @@ export default function VansDetailsPage() {
       <section className="sm:flex items-center">
         <div className="flex flex-col sm:items-start items-center space-y-6">
           <span
-            className={`bg-${vanDetails.typeBg} px-8 py-2 text-[#FFEAD0] text-lg font-semibold w-fit rounded-md`}
+            className={`bg-${vanDetails.typeBg} px-8 py-2 text-white text-lg font-semibold w-fit rounded-md`}
           >
             {vanDetails.type}
           </span>

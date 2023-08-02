@@ -43,7 +43,7 @@ export default function VansShowcase() {
                   : data.type === "Luxury"
                   ? "bg-[#161616]"
                   : "bg-[#115E59]"
-              } text-[#FFEAD0] sm:text-base text-sm sm:font-bold font-semibold rounded-md sm:py-2 py-1 sm:px-6 px-4 w-fit`}
+              } text-white sm:text-base text-sm sm:font-bold font-semibold rounded-md sm:py-2 py-1 sm:px-6 px-4 w-fit`}
             >
               {data.type}
             </span>

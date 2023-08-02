@@ -54,7 +54,13 @@ export default function App() {
         />
         <Route element={<ProtectedRoutes />}>
           <Route path="host" element={<HostLayout />}>
-            <Route index element={<Dashboard />} />
+            <Route
+              index
+              element={<Dashboard />}
+              loader={async () => {
+                return hostVansPageLoader();
+              }}
+            />
             <Route path="income" element={<Income />} />
             <Route path="reviews" element={<Reviews />} />
             <Route

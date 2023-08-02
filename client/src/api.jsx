@@ -1,14 +1,37 @@
+import { initializeApp } from "firebase/app";
+// TODO: import { getAnalytics } from "firebase/analytics";
+import {
+  getFirestore,
+  getDocs,
+  getDoc,
+  doc,
+  collection,
+  query,
+  where,
+} from "firebase/firestore/lite";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD0wnJP_6mKwq41gN8GFVOj5hIuQdgRMjA",
+  authDomain: "vango-12aaf.firebaseapp.com",
+  projectId: "vango-12aaf",
+  storageBucket: "vango-12aaf.appspot.com",
+  messagingSenderId: "644481206377",
+  appId: "1:644481206377:web:7afad7bd094356a016faf8",
+  measurementId: "G-H9MWS87TY1",
+};
+
+const app = initializeApp(firebaseConfig);
+// TODO: const analytics = getAnalytics(app);
+const db = getFirestore(app);
+const vansCollectionRef = collection(db, "vans");
+
 export async function getVans() {
-  const res = await fetch("/api/vans");
-  if (!res.ok) {
-    throw {
-      message: "Failed to fetch vans",
-      statusText: res.statusText,
-      status: res.status,
-    };
-  }
-  const data = await res.json();
-  const processedData = await data.vans.map((data) => {
+  const querySnapshot = await getDocs(vansCollectionRef);
+  const data = querySnapshot.docs.map((doc) => ({
+    ...doc.data(),
+    id: doc.id,
+  }));
+  const processedData = data.map((data) => {
     const buttonStyle =
       data.type === "simple"
         ? "bg-[#E17654] text-white hover:outline hover:outline-2 hover:outline-[#E17654]"
@@ -21,66 +44,57 @@ export async function getVans() {
       type: data.type.charAt(0).toUpperCase() + data.type.slice(1),
     };
   });
+
   return processedData;
 }
 
 export async function getVanDetail(vanId) {
-  const res = await fetch(`/api/vans/${vanId}`);
-  if (!res.ok) {
-    throw {
-      message: "Failed to fetch vans",
-      statusText: res.statusText,
-      status: res.status,
-    };
-  }
-  const data = await res.json();
-  data.vans = await {
-    ...data.vans,
+  const vanRef = doc(db, "vans", vanId);
+  const vanShot = await getDoc(vanRef);
+  let data = vanShot.data();
+
+  data = {
+    ...data,
     typeBg:
-      data.vans.type === "simple"
+      data.type === "simple"
         ? "[#E17654]"
-        : data.vans.type === "luxury"
+        : data.type === "luxury"
         ? "[#161616]"
         : "[#115E59]",
-    type: data.vans.type.charAt(0).toUpperCase() + data.vans.type.slice(1),
+    type: data.type.charAt(0).toUpperCase() + data.type.slice(1),
   };
-  return data.vans;
+
+  return data;
 }
 
 export async function getHostVans() {
-  const res = await fetch("/api/host/vans");
-  if (!res.ok) {
-    throw {
-      message: "Failed to fetch vans",
-      statusText: res.statusText,
-      status: res.status,
-    };
-  }
-  const data = await res.json();
-  return data.vans;
+  const q = query(vansCollectionRef, where("hostId", "==", "123"));
+  const querySnapshot = await getDocs(q);
+  const data = querySnapshot.docs.map((doc) => ({
+    ...doc.data(),
+    id: doc.id,
+  }));
+
+  return data;
 }
 
 export async function getHostVanDetail(vanId) {
-  const res = await fetch(`/api/host/vans/${vanId}`);
-  if (!res.ok) {
-    throw {
-      message: "Failed to fetch vans",
-      statusText: res.statusText,
-      status: res.status,
-    };
-  }
-  const data = await res.json();
-  data.vans = await {
-    ...data.vans,
+  const hostVanRef = doc(db, "vans", vanId);
+  const hostVanShot = await getDoc(hostVanRef);
+  let data = hostVanShot.data();
+
+  data = {
+    ...data,
     typeBg:
-      data.vans.type === "simple"
+      data.type === "simple"
         ? "[#E17654]"
-        : data.vans.type === "luxury"
+        : data.type === "luxury"
         ? "[#161616]"
         : "[#115E59]",
-    type: data.vans.type.charAt(0).toUpperCase() + data.vans.type.slice(1),
+    type: data.type.charAt(0).toUpperCase() + data.type.slice(1),
   };
-  return data.vans;
+
+  return data;
 }
 
 export async function loginUser(creds) {

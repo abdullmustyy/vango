@@ -78,7 +78,7 @@ export default function HostVanDetailLayout() {
         <Suspense
           fallback={
             <p className="text-xl font-bold mt-12">
-              Loading host&apos;s vans details ...
+              Loading host&apos;s van details ...
             </p>
           }
         >

@@ -44,14 +44,14 @@ export default function AuthPage() {
   }
 
   return (
-    <section className="container mx-auto grid place-content-center py-24 text-[#161616]">
-      <div className="w-[40rem] space-y-6">
+    <section className="container mx-auto md:grid place-content-center py-36 md:px-0 px-4 text-[#161616]">
+      <div className="md:w-[40rem] space-y-6">
         {location.state?.message && (
           <h3 className="text-base text-center text-red-600 font-semibold">
             {location.state?.message}
           </h3>
         )}
-        <h1 className="text-4xl font-bold text-center">
+        <h1 className="md:text-4xl text-2xl font-bold text-center">
           Sign in to your account
         </h1>
         <Formik

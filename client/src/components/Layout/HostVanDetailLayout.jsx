@@ -17,16 +17,16 @@ export default function HostVanDetailLayout() {
           <img
             src={hostVanDetails.imageUrl}
             alt={hostVanDetails.name}
-            className="w-60 object-cover rounded-l-lg"
+            className="md:w-60 w-36 object-cover rounded-l-lg"
           />
         </div>
         <div className="flex flex-col justify-center space-y-4">
           <span
-            className={`bg-${hostVanDetails.typeBg} px-4 py-2 text-[#FFEAD0] text-sm font-bold w-fit rounded-md`}
+            className={`bg-${hostVanDetails.typeBg} px-4 md:py-2 py-1 text-[#FFEAD0] text-sm md:font-bold font-semibold w-fit rounded-md`}
           >
             {hostVanDetails.type}
           </span>
-          <h1 className="text-[#161616] text-[2rem] font-bold">
+          <h1 className="text-[#161616] md:text-[2rem] text-2xl font-bold">
             {hostVanDetails.name}
           </h1>
           <span className="text-[#161616] text-base font-semibold">

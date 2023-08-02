@@ -9,7 +9,7 @@ export default function HostVanPhotos() {
         <img
           src={hostVanDetails.imageUrl}
           alt={hostVanDetails.name}
-          className="w-40 object-cover rounded-lg"
+          className="md:w-40 w-32 object-cover rounded-lg"
         />
       </div>
     </section>

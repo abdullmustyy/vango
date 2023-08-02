@@ -14,7 +14,7 @@ export default function Dashboard() {
         <img
           src={van.imageUrl}
           alt={`Photo of ${van.name}`}
-          className="h-36 rounded-md"
+          className="sm:w-36 w-20 rounded-md"
         />
         <div className="host-van-info">
           <h3 className="text-base font-bold">{van.name}</h3>

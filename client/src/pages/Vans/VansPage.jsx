@@ -11,6 +11,33 @@ export default function VansPage() {
   const vansDataPromise = useLoaderData();
   const dispatch = useDispatch();
 
+  const renderVansData = (vansData) => {
+    const vansTypes = vansData.map((van, index) => ({
+      id: index,
+      type: van.type,
+      buttonStyle: van.buttonStyle,
+    }));
+    const options = vansTypes
+      .sort((a, b) => {
+        const typeA = a.type.toUpperCase();
+        const typeB = b.type.toUpperCase();
+        return typeA < typeB ? -1 : typeA > typeB ? 1 : 0;
+      })
+      .filter((data, index, arr) => data.type !== arr[index - 1]?.type);
+    dispatch(setFilterOptions(options));
+
+    return (
+      <>
+        <main>
+          <VansFilters />
+          <VansContext.Provider value={{ vansData }}>
+            <VansShowcase />
+          </VansContext.Provider>
+        </main>
+      </>
+    );
+  };
+
   return (
     <section className="container mx-auto my-12 md:px-0 px-4 text-[#161616]">
       <header className="mb12 space-y-2">
@@ -24,34 +51,7 @@ export default function VansPage() {
           <p className="text-xl font-bold mt-12">Loading vans data ...</p>
         }
       >
-        <Await resolve={vansDataPromise.vans}>
-          {(vansData) => {
-            const vansTypes = vansData.map((van, index) => ({
-              id: index,
-              type: van.type,
-              buttonStyle: van.buttonStyle,
-            }));
-            const options = vansTypes
-              .sort((a, b) => {
-                const typeA = a.type.toUpperCase();
-                const typeB = b.type.toUpperCase();
-                return typeA < typeB ? -1 : typeA > typeB ? 1 : 0;
-              })
-              .filter((data, index, arr) => data.type !== arr[index - 1]?.type);
-            dispatch(setFilterOptions(options));
-
-            return (
-              <>
-                <main>
-                  <VansFilters />
-                  <VansContext.Provider value={{ vansData }}>
-                    <VansShowcase />
-                  </VansContext.Provider>
-                </main>
-              </>
-            );
-          }}
-        </Await>
+        <Await resolve={vansDataPromise.vans}>{renderVansData}</Await>
       </Suspense>
     </section>
   );

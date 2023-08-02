@@ -49,31 +49,14 @@ export default function App() {
         <Route
           path="vans/:id"
           element={<VansDetailsPage />}
+          errorElement={<Error />}
           loader={({ params }) => vanDetailPageLoader(params.id)}
         />
         <Route element={<ProtectedRoutes />}>
           <Route path="host" element={<HostLayout />}>
-            <Route
-              index
-              element={<Dashboard />}
-              loader={async () => {
-                return null;
-              }}
-            />
-            <Route
-              path="income"
-              element={<Income />}
-              loader={async () => {
-                return null;
-              }}
-            />
-            <Route
-              path="reviews"
-              element={<Reviews />}
-              loader={async () => {
-                return null;
-              }}
-            />
+            <Route index element={<Dashboard />} />
+            <Route path="income" element={<Income />} />
+            <Route path="reviews" element={<Reviews />} />
             <Route
               path="vans"
               element={<HostVans />}
@@ -90,27 +73,9 @@ export default function App() {
                 return hostVanDetailPageLoader(params.id);
               }}
             >
-              <Route
-                index
-                element={<HostVanDetail />}
-                loader={async () => {
-                  return null;
-                }}
-              />
-              <Route
-                path="pricing"
-                element={<HostPricing />}
-                loader={async () => {
-                  return null;
-                }}
-              />
-              <Route
-                path="photos"
-                element={<HostVanPhotos />}
-                loader={async () => {
-                  return null;
-                }}
-              />
+              <Route index element={<HostVanDetail />} />
+              <Route path="pricing" element={<HostPricing />} />
+              <Route path="photos" element={<HostVanPhotos />} />
             </Route>
           </Route>
         </Route>

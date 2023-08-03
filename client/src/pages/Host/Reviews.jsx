@@ -19,7 +19,7 @@ export default function Reviews() {
   ];
 
   return (
-    <section className="py-6 md:px-0 px-4 text-[#161616] bg-[#FFF7ED]">
+    <section className="py-6 md:px-0 px-4 text-[#161616]">
       <div className="container mx-auto space-y-6">
         <div className="flex justify-between">
           <h1 className="text-2xl font-bold">Your reviews</h1>

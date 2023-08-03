@@ -5,7 +5,7 @@ export default function Income() {
     { amount: 980, date: "Dec 3, '22", id: "3" },
   ];
   return (
-    <section className="py-6 md:px-0 px-4 text-[#161616] bg-[#FFF7ED]">
+    <section className="py-6 md:px-0 px-4 text-[#161616]">
       <div className="container mx-auto space-y-6">
         <h1 className="text-2xl font-bold">Income</h1>
         <p className="text-base font-normal">

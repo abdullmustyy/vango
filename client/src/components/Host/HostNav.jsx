@@ -7,7 +7,7 @@ export default function HostNav() {
   };
 
   return (
-    <nav className="bg-[#FFF7ED] py-6 md:px-0 px-4">
+    <nav className="py-6 md:px-0 px-4">
       <div className="container mx-auto text-base text-[#161616] font-medium space-x-6">
         <NavLink
           end

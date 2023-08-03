@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 
 export default function AboutPage() {
   return (
-    <section className="about bg-[#FFF7ED] overflow-x-hidden font-inter">
+    <section className="about overflow-x-hidden font-inter">
       <header className="hero h-[70vh]"></header>
       <main className="container mx-auto text-[#161616] md:px-0 px-4 pt-8 pb-16">
         <div className="break-words space-y-8">
           <h1 className="text-5xl font-bold">
-            Don’t squeeze in a sedan when you could relax in a van.
+            Don&apos;t squeeze in a sedan when you could relax in a van.
           </h1>
           <p className="text-base font-medium">
             Our mission is to enliven your road trip with the perfect travel van

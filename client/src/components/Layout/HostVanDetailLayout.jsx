@@ -22,7 +22,7 @@ export default function HostVanDetailLayout() {
         </div>
         <div className="flex flex-col justify-center md:space-y-4 space-y-2">
           <span
-            className={`bg-${hostVanDetails.typeBg} md:px-4 px-2 md:py-2 py-[0.1rem] text-[#FFEAD0] text-sm md:font-bold font-semibold w-fit rounded-md`}
+            className={`bg-${hostVanDetails.typeBg} md:px-4 px-2 md:py-2 py-[0.1rem] text-white text-sm md:font-bold font-semibold w-fit rounded-md`}
           >
             {hostVanDetails.type}
           </span>
@@ -63,7 +63,7 @@ export default function HostVanDetailLayout() {
   );
 
   return (
-    <section className="bg-[#FFF7ED] py-8 md:px-0 px-4">
+    <section className="py-8 md:px-0 px-4">
       <header className="container mx-auto">
         <Link
           to="../vans"

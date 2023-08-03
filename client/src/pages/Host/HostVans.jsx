@@ -36,7 +36,7 @@ export default function HostVans() {
   );
 
   return (
-    <section className="text-[#161616] bg-[#FFF7ED] pb-8 md:px-0 px-4">
+    <section className="text-[#161616] pb-8 md:px-0 px-4">
       <div className="container mx-auto">
         <h2 className="text-lg font-bold">Your listed vans</h2>
         <p className="text-lg font-light">

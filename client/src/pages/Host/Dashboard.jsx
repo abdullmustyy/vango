@@ -33,7 +33,7 @@ export default function Dashboard() {
   }
 
   return (
-    <main className="bg-[#FFF7ED] text-[#161616] md:px-0 px-4">
+    <main className="text-[#161616] md:px-0 px-4">
       <section className="container mx-auto">
         <section className="flex justify-between items-center bg-[#FFEAD0] p-6 rounded-t-2xl shadow-inne">
           <div className="space-y-4">

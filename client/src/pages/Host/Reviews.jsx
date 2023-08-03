@@ -19,30 +19,38 @@ export default function Reviews() {
   ];
 
   return (
-    <section className="host-reviews">
-      <div className="top-text">
-        <h2>Your reviews</h2>
-        <p>
-          Last <span>30 days</span>
-        </p>
-      </div>
-      <img className="graph" src="/reviews.png" alt="Review graph" />
-      <h3>Reviews (2)</h3>
-      {reviewsData.map((review) => (
-        <div key={review.id}>
-          <div className="review">
-            {[...Array(review.rating)].map((_, i) => (
-              <BsStarFill className="review-star" key={i} />
-            ))}
-            <div className="info">
-              <p className="name">{review.name}</p>
-              <p className="date">{review.date}</p>
-            </div>
-            <p>{review.text}</p>
-          </div>
-          <hr />
+    <section className="py-6 md:px-0 px-4 text-[#161616] bg-[#FFF7ED]">
+      <div className="container mx-auto space-y-6">
+        <div className="flex justify-between">
+          <h1 className="text-2xl font-bold">Your reviews</h1>
+          <p className="text-base font-normal">
+            Last <span className="font-medium underline">30 days</span>
+          </p>
         </div>
-      ))}
+        <img className="py-6" src="/reviews.png" alt="Review graph" />
+        <h3 className="text-lg font-bold">Reviews (2)</h3>
+        {reviewsData.map((review) => (
+          <div key={review.id}>
+            <div className="space-y-4 py-4">
+              <div className="flex">
+                {[...Array(review.rating)].map((_, i) => (
+                  <BsStarFill className="text-[#FF8C38]" key={i} />
+                ))}
+              </div>
+              <div className="flex items-center gap-2">
+                <p className="text-lg font-bold">{review.name}</p>
+                <p className="text-[#8C8C8C] text-lg font-thin">
+                  {review.date}
+                </p>
+              </div>
+              <p className="text-base font-semibold break-words">
+                {review.text}
+              </p>
+            </div>
+            <hr />
+          </div>
+        ))}
+      </div>
     </section>
   );
 }

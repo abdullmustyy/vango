@@ -12,17 +12,17 @@ export default function HostVanDetailLayout() {
 
   const renderHostVanDetails = (hostVanDetails) => (
     <div className="bg-white p-8 mt-8 rounded-lg space-y-6">
-      <div className="flex space-x-10">
+      <div className="flex md:space-x-10 space-x-6">
         <div className="w-fit rounded-l-lg">
           <img
             src={hostVanDetails.imageUrl}
             alt={hostVanDetails.name}
-            className="md:w-60 w-36 object-cover rounded-l-lg"
+            className="md:w-60 w-28 object-cover rounded-l-lg"
           />
         </div>
-        <div className="flex flex-col justify-center space-y-4">
+        <div className="flex flex-col justify-center md:space-y-4 space-y-2">
           <span
-            className={`bg-${hostVanDetails.typeBg} px-4 md:py-2 py-1 text-[#FFEAD0] text-sm md:font-bold font-semibold w-fit rounded-md`}
+            className={`bg-${hostVanDetails.typeBg} md:px-4 px-2 md:py-2 py-[0.1rem] text-[#FFEAD0] text-sm md:font-bold font-semibold w-fit rounded-md`}
           >
             {hostVanDetails.type}
           </span>

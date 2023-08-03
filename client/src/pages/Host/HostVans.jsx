@@ -5,23 +5,32 @@ export default function HostVans() {
   const hostVansPromise = useLoaderData();
 
   const renderHostVans = (hostVans) => (
-    <div className="grid md:grid-cols-3 grid-cols-2 gap-8 pt-6">
+    <div className="grid grid-cols-1 gap-6 pt-6">
       {hostVans.map((vanData) => (
-        <Link to={vanData.id} key={vanData.id}>
-          <div className="flex flex-col space-y-2">
-            <h1 className="text-lg font-semibold">{vanData.name}</h1>
-            <div className="rounded-tr-[3rem] rounded-bl-[3rem] outline outline-offset-2 outline-[1px]">
-              <img
-                src={vanData.imageUrl}
-                alt={vanData.name}
-                className="rounded-tr-[3rem] rounded-bl-[3rem]"
-              />
-            </div>
-            <span className="text-base font-medium self-end">
+        <div
+          key={vanData.id}
+          className="flex bg-white items-center gap-6 p-6 rounded-lg shadow-sm"
+        >
+          <Link to={vanData.id}>
+            <img
+              src={vanData.imageUrl}
+              alt={vanData.name}
+              className="sm:w-36 w-20 rounded-md hover:outline outline-offset-2 outline-[1px]"
+            />
+          </Link>
+          <div>
+            <h1 className="text-base font-bold">{vanData.name}</h1>
+            <span className="text-base font-semibold">
               ${vanData.price}/day
             </span>
           </div>
-        </Link>
+          <Link
+            to={vanData.id}
+            className="ml-auto text-sm font-semibold hover:underline"
+          >
+            Details
+          </Link>
+        </div>
       ))}
     </div>
   );

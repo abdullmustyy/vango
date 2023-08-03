@@ -8,7 +8,7 @@ export default function VansDetailsPage() {
 
   const renderVanDetails = (vanDetails) => (
     <main className="my-10 grid sm:grid-cols-2 gap-10">
-      <section className="my-8">
+      <section className="md:my-8">
         <div
           className={`outline-${vanDetails.typeBg} rounded-full max-w-2xl outline outline-offset-1 outline-[1px]`}
         >
@@ -20,19 +20,19 @@ export default function VansDetailsPage() {
         </div>
       </section>
       <section className="sm:flex items-center">
-        <div className="flex flex-col sm:items-start items-center space-y-6">
+        <div className="flex flex-col sm:items-start items-center md:space-y-6 space-y-4">
           <span
-            className={`bg-${vanDetails.typeBg} px-8 py-2 text-white text-lg font-semibold w-fit rounded-md`}
+            className={`bg-${vanDetails.typeBg} md:px-8 px-6 md:py-2 py-1 text-white md:text-lg text-base font-semibold w-fit rounded-md`}
           >
             {vanDetails.type}
           </span>
-          <h2 className="text-[2.5rem] font-bold">{vanDetails.name}</h2>
-          <span className="text-2xl font-bold">${vanDetails.price}/day</span>
+          <h2 className="md:text-[2.5rem] text-2xl font-bold">{vanDetails.name}</h2>
+          <span className="md:text-2xl text-xl font-bold">${vanDetails.price}/day</span>
           <p className="text-base font-medium break-words sm:text-start text-center">
             {vanDetails.description}
           </p>
           <button
-            className={`bg-${vanDetails.typeBg} text-white text-lg font-bold w-1/2 py-3 rounded-lg opacity-100 hover:opacity-90`}
+            className={`bg-${vanDetails.typeBg} text-white text-lg font-bold w-1/2 md:py-3 py-2 rounded-lg opacity-100 hover:opacity-90`}
           >
             Rent this van
           </button>

@@ -9,7 +9,7 @@ export default function VansFilters() {
 
   return (
     <div className="flex items-center justify-between mt-4 mb-12">
-      <div className="space-x-8">
+      <div className="md:space-x-8 space-x-3">
         {filterOptions.map((option) => (
           <button
             key={option.id}
@@ -28,7 +28,7 @@ export default function VansFilters() {
               typeFilter.includes(option.type.toLowerCase())
                 ? option.buttonStyle
                 : "bg-[#FFEAD0] hover:outline hover:outline-2 hover:outline-[#FFEAD0]"
-            } text-[#4D4D4D] text-base font-medium rounded-md py-2 px-6 transition`}
+            } text-[#4D4D4D] md:text-base text-sm md:font-medium font-semibold rounded-md md:py-2 py-1 md:px-6 px-4 transition`}
           >
             {option.type}
           </button>
@@ -48,7 +48,7 @@ export default function VansFilters() {
             onClick={() => {
               setSearchParams({});
             }}
-            className="hover:outline outline-[#a61414] outline-2 p-2 rounded-full text-white text-base font-medium bg-[#a61414] transition sm:hidden block"
+            className="hover:outline outline-[#a61414] outline-2 md:p-2 p-1 rounded-full text-white text-base font-medium bg-[#a61414] transition sm:hidden block"
           >
             <FaXmark />
           </button>

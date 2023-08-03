@@ -8,7 +8,7 @@ export default function Dashboard() {
   function renderVanElements(vans) {
     const hostVansEls = vans.map((van) => (
       <div
-        className="bg-white flex items-center gap-6 p-6 mb-4 rounded-lg shadow-sm"
+        className="bg-white flex items-center gap-6 p-6 rounded-lg shadow-sm"
         key={van.id}
       >
         <img
@@ -16,7 +16,7 @@ export default function Dashboard() {
           alt={`Photo of ${van.name}`}
           className="sm:w-36 w-20 rounded-md"
         />
-        <div className="host-van-info">
+        <div>
           <h3 className="text-base font-bold">{van.name}</h3>
           <p className="text-base font-semibold">${van.price}/day</p>
         </div>
@@ -29,11 +29,7 @@ export default function Dashboard() {
       </div>
     ));
 
-    return (
-      <div className="host-vans-list">
-        <section>{hostVansEls}</section>
-      </div>
-    );
+    return <section className="space-y-4 pb-6">{hostVansEls}</section>;
   }
 
   return (

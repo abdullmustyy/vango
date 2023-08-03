@@ -31,7 +31,7 @@ export default function VansShowcase() {
               />
             </div>
             <div className="flex justify-between">
-              <h3 className="sm:text-2xl text-lg font-semibold">{data.name}</h3>
+              <h3 className="sm:text-2xl text-lg font-semibold truncate">{data.name}</h3>
               <span className="sm:text-2xl text-lg font-semibold">
                 ${data.price}/day
               </span>

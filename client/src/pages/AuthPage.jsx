@@ -1,12 +1,15 @@
+import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
 import { MyTextInput } from "../components/FormItems";
-import { useLocation, useNavigate } from "react-router-dom";
-import { loginUser } from "../api";
-import { useSelector, useDispatch } from "react-redux";
 import { setError } from "../state/authSlice";
+import { setPageType } from "../state/authSlice";
 
-const loginSchema = Yup.object().shape({
+const authSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email address.").required("Required"),
   password: Yup.string()
     .required("No password provided.")
@@ -14,37 +17,58 @@ const loginSchema = Yup.object().shape({
     .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
 });
 
-const initialLoginValues = {
+const authValues = {
   email: "",
   password: "",
 };
 
 export default function AuthPage() {
-  const { error } = useSelector((state) => state.auth);
+  const { error, pageType } = useSelector((state) => state.auth);
+  const isSignIn = pageType === "signin";
+  const isSignUp = pageType === "signup";
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
 
-  function handleSubmit(values, { setSubmitting }) {
-    dispatch(setError(null));
-    loginUser(values)
-      .then((data) => {
-        console.log(JSON.stringify(data, null, 2));
-        localStorage.setItem("isLoggedIn", true);
+  async function signUp({ email, password }, resetForm) {
+    await createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+        resetForm();
+        dispatch(setPageType("signin"));
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        dispatch(setError(errorMessage));
+      });
+  }
+
+  function signIn({ email, password }, resetForm) {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+        resetForm();
         navigate(location.state?.from || "/", {
           replace: true,
         });
       })
-      .catch((err) => {
-        dispatch(setError(err.message));
-      })
-      .finally(() => {
-        setSubmitting(false);
+      .catch((error) => {
+        const errorMessage = error.message;
+        dispatch(setError(errorMessage));
       });
   }
 
+  async function handleSubmit(values, { resetForm }) {
+    dispatch(setError(null));
+    if (isSignIn) signIn(values, resetForm);
+    if (isSignUp) signUp(values, resetForm);
+  }
+
   return (
-    <section className="container mx-auto md:grid place-content-center py-36 md:px-0 px-4 text-[#161616]">
+    <section className="container mx-auto md:grid place-content-center py-36 md:px-0 px-4 text-[#161616] select-text">
       <div className="md:w-[40rem] space-y-6">
         {location.state?.message && (
           <h3 className="text-base text-center text-red-600 font-semibold">
@@ -52,14 +76,14 @@ export default function AuthPage() {
           </h3>
         )}
         <h1 className="md:text-4xl text-2xl font-bold text-center">
-          Sign in to your account
+          {isSignIn ? "Sign in to your account" : "Create an account"}
         </h1>
         <Formik
-          initialValues={initialLoginValues}
-          validationSchema={loginSchema}
+          initialValues={authValues}
+          validationSchema={authSchema}
           onSubmit={handleSubmit}
         >
-          {({ isSubmitting }) => (
+          {({ isSubmitting, resetForm }) => (
             <Form className="grid gap-4">
               <MyTextInput
                 name="email"
@@ -83,11 +107,32 @@ export default function AuthPage() {
                   isSubmitting ? "opacity-80 cursor-not-allowed" : null
                 } bg-[#FF8C38] w-full rounded-md py-3 text-base font-bold text-white place-self-center hover:outline outline-2 outline-[#FF8C38] transition`}
               >
-                {isSubmitting ? "Signing" : "Sign"} in
+                {isSubmitting ? "Signing" : "Sign"} {isSignIn ? "In" : "Up"}
               </button>
-              <p className="text-base font-semibold cursor-pointer text-center">
-                Don&apos;t have an account?{" "}
-                <span className="text-[#FF8C38] font-bold">Create one now</span>
+              <p
+                className="text-base font-semibold cursor-pointer text-center"
+                onClick={() => {
+                  dispatch(setError(null));
+                  resetForm();
+                  dispatch(setPageType(isSignIn ? "signup" : "signin"));
+                }}
+              >
+                {isSignIn && (
+                  <span>
+                    Don&apos;t have an account?{" "}
+                    <span className="text-[#FF8C38] font-bold">
+                      Sign Up here
+                    </span>
+                  </span>
+                )}
+                {isSignUp && (
+                  <span>
+                    Already have an account?{" "}
+                    <span className="text-[#FF8C38] font-bold">
+                      Sign In here
+                    </span>
+                  </span>
+                )}
               </p>
             </Form>
           )}

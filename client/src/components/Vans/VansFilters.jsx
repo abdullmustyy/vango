@@ -40,7 +40,7 @@ export default function VansFilters() {
             onClick={() => {
               setSearchParams({});
             }}
-            className="hover:outline outline-[#a61414] outline-2 py-2 px-6 rounded-md text-white text-base font-medium bg-[#a61414] transition sm:block hidden"
+            className="hover:outline outline-[#a61414] outline-2 md:py-2 py-1 md:px-6 px-4 rounded-md text-white md:text-base text-sm md:font-medium font-semibold bg-[#a61414] transition sm:block hidden"
           >
             Clear filters
           </button>

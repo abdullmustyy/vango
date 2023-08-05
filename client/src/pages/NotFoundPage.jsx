@@ -7,7 +7,7 @@ export default function NotFoundPage() {
       <div className="flex flex-col justify-center items-center text-[#161616] space-y-6">
         <FaFaceFrown size={"3rem"} />
         <h1 className="text-4xl font-black text-center">
-          Sorry, the page you were looking for was not found.
+          Sorry, the page you searched for was not found.
         </h1>
         <Link
           to=".."

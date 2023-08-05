@@ -1,10 +1,17 @@
 import { Outlet, Navigate, useLocation } from "react-router-dom";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
+const auth = getAuth();
 
 export default function ProtectedRoutes() {
   const location = useLocation();
-  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  let isLoggedIn = null;
 
-  return isLoggedIn === "true" ? (
+  onAuthStateChanged(auth, (user) =>
+    user ? (isLoggedIn = true) : (isLoggedIn = false)
+  );
+
+  return isLoggedIn ? (
     <Outlet />
   ) : (
     <Navigate

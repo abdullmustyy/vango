@@ -1,7 +1,5 @@
-import { initializeApp } from "firebase/app";
-// TODO: import { getAnalytics } from "firebase/analytics";
+import { db } from "./firebase";
 import {
-  getFirestore,
   getDocs,
   getDoc,
   doc,
@@ -10,19 +8,6 @@ import {
   where,
 } from "firebase/firestore/lite";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyD0wnJP_6mKwq41gN8GFVOj5hIuQdgRMjA",
-  authDomain: "vango-12aaf.firebaseapp.com",
-  projectId: "vango-12aaf",
-  storageBucket: "vango-12aaf.appspot.com",
-  messagingSenderId: "644481206377",
-  appId: "1:644481206377:web:7afad7bd094356a016faf8",
-  measurementId: "G-H9MWS87TY1",
-};
-
-const app = initializeApp(firebaseConfig);
-// TODO: const analytics = getAnalytics(app);
-const db = getFirestore(app);
 const vansCollectionRef = collection(db, "vans");
 
 export async function getVans() {
